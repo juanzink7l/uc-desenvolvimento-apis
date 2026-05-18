@@ -2,23 +2,27 @@ from pydantic import BaseModel, Field
 from typing import Optional
 from datetime import datetime
 
-class ProdutoCreate(BaseModel):
-    nome: str = Field(..., min_length=2, max_length=100)
-    preco: float = Field(..., gt=0)
-    estoque:int = Field(0, ge=0)
+# Entrada: POST e PUT (campos obrigatorios)
+class LivroCreate(BaseModel):
+    titulo: str = Field(..., min_length=2, max_length=200)
+    autor: str = Field(...,  min_length=2, max_length=150) # gt=0 - maior que zero
+    ano_publicacao: int = Field(0, ge=0) # ge=0 - maior ou igual a zero
 
-class ProdutoPatch(BaseModel):
-    nome: Optional[str] = Field(None, min_length=2, max_length=100)
-    preco: Optional[float] = Field(None, gt=0)
-    estoque: Optional[int] = Field(None, ge=0)
+# Entrada: PATCH (todos os campos são opcionais)
+class LivroPatch(BaseModel):
+    titulo: Optional[str] = Field(None, min_length=2, max_length=200)
+    autor: Optional[str] = Field(None, min_length=2, max_length=150)
+    ano_publicacao: Optional[int] = Field(None, ge=0)
 
-class ProdutoResponse(BaseModel):
+# Saída: o que a API retorna
+class LivroResponse(BaseModel):
     id: int
-    nome: str
-    preco: float
-    estoque: int
-    ativo: bool
+    titulo: str
+    autor: str
+    ano_publicacao: int
+    disponivel: bool
     criado_em: datetime
 
-class Config:
-    from_attributes = True
+    class Config:
+        from_attributes = True # permite converter SQLAlchemy em Pydantic
+    
