@@ -2,6 +2,14 @@ from pydantic import BaseModel, Field, EmailStr, field_validator
 from typing import Optional
 from datetime import datetime
 
+class LoginRequest(BaseModel):
+    email: str
+    senha: str
+
+class TokenResponse():   # sempre que criar uma class a primeira letra é maiuscula!
+    access_token: str
+    token_type: str = 'bearer' # esse bearer faz a requisiçao do token
+
 # Schema de CRIAÇÃO (POST)
 # Contém senha pois o usuário precisa enviar para se cadastrar.
 # NÃO contém id nem criado_em / o banco gera automaticamente.
