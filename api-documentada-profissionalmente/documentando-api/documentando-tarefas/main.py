@@ -58,7 +58,15 @@ def achar_tarefa(tarefa_id: int):
 
 #  AUTENTICAÇÃO
 
-@app.post('/auth/registro', status_code=201)
+@app.post('/auth/registro', status_code=201,
+          tags=['Autenticação'],
+          summary='Criar nova conta', 
+          description='Cria uma conta com nome, e-mail e senha. Senha essa que é armazenada como hash bcrypt',  
+          responses={
+               201: {'description': 'Conta criada com sucesso!'},
+               409: {'description': 'E-mail já cadastrado'},
+               422: {'description': 'Dados inválidos'},
+               })
 def registro(dados: UsuarioCreate):
     global proximo_id_usuario
     if any(u['email'] == dados.email for u in usuarios):
@@ -73,7 +81,14 @@ def registro(dados: UsuarioCreate):
     proximo_id_usuario += 1
     return {'id': novo['id'], 'nome': novo['nome'], 'email': novo['email']}
 
-@app.post('/auth/login', response_model=TokenResponse)
+@app.post('/auth/login', response_model=TokenResponse,
+          tags=['Autenticação'],
+          summary='Fazer login e conseguir seu token', 
+          description='Após o login, será retornado um token JWT, use-o no botão ***Authorize***',  
+          responses={
+               201: {'description': 'Login realizado com sucesso!'},
+               401: {'description': 'E-mail ou senha incorretos'},
+               })
 def login(dados: LoginRequest):
     usuario = next((u for u in usuarios if u['email'] == dados.email), None)
     if not usuario or not verificar_senha(dados.senha, usuario['hash_senha']):
@@ -84,12 +99,28 @@ def login(dados: LoginRequest):
 # TAREFAS
 
 # PÚBLICO - sem Depends
-@app.get('/tarefas')
+@app.get('/tarefas',
+         tags=['Tarefas'],
+          summary='Listar Tarefas', 
+          description='Lista de todas as tarefas criadas.',  
+          responses={
+               200: {'description': 'Tarefas listadas com sucesso'},
+               204: {'description': 'Sucesso, sem tarefas existentes'},
+               })
 def listar():
     return tarefas
 
 # PROTEGIDO - exige token
-@app.post('/tarefas', status_code=201)
+@app.post('/tarefas', status_code=201,
+          tags=['Tarefas'],
+          summary='Criar Tarefas', 
+          description='Crie uma tarefa.',  
+          responses={
+               201: {'description': 'Tarefa criada com sucesso'},
+               400: {'description': 'Dados inválidos'},
+               400: {'description': 'Dados inválidos'},
+               401: {'description': 'Faça autenticação com o token para poder usar criar uma tarefa'},
+               })
 def criar(
     dados: TarefaCreate,
     email: str = Depends(usuario_logado)   # qualquer logado cria
@@ -106,7 +137,14 @@ def criar(
     return nova
 
 # PROTEGIDO
-@app.patch('/tarefas/{tarefa_id}')
+@app.patch('/tarefas/{tarefa_id}',
+           tags=['Tarefas'],
+          summary='Atualizar Tarefa', 
+          description='Atualiza tarefas.',  
+          responses={
+               404: {'description': 'Tarefa não encontrada'},
+               200: {'description': 'Dados atualizados com sucesso!'},
+               })
 def atualizar(
     tarefa_id: int,
     dados: TarefaPatch,
