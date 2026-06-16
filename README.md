@@ -1,4 +1,3 @@
-# 🏗️ Em construção...
 # UC — Desenvolvimento de APIs
 ![Curso](https://img.shields.io/badge/curso-Técnico%20em%20Informática%20para%20Internet-blue)
 ![Instituição](https://img.shields.io/badge/instituição-SENAI-red)
@@ -20,12 +19,12 @@ Nesta Unidade Curricular aprendemos a criar e consumir **APIs REST** utilizando 
 | # | Tema | Conteúdo | Exemplo Guiado | Exercício | Status |
 |:-:|------|----------|:--------------:|:---------:|:------:|
 | 1 | **Introdução a APIs** | Conceito, JSON, fetch(), analogia do garçom | Cat API no navegador | Github API | ✅ |
-| 2 | **HTTP + Primeira API** | Protocolo HTTP, métodos, status codes, FastAPI básico | Primeira API FastAPI | API de Filmes | ⏳ |
-| 3 | **CRUD Completo** | GET, POST, PUT, PATCH, DELETE, HTTPException | CRUD de Produtos | CRUD de Tarefas | ⏳ |
-| 4 | **MVC + Banco de Dados** | SQLAlchemy, ORM, Depends(), estrutura MVC | Produtos API + SQLite | Livros API + SQLite | ⏳ |
-| 5 | **Validação com Pydantic** | BaseModel, Field, validators, schemas de entrada/saída | Schemas avançados | Validação de Usuários | ⏳ |
-| 6 | **Autenticação JWT** | bcrypt, JWT, registro, login, proteção de rotas | Auth API Completa | Tarefas com Auth | ⏳ |
-| 7 | **Documentação Swagger** | summary, description, exemplos, tags | Docs ricos na API | Biblioteca documentada | ⏳ |
+| 2 | **HTTP + Primeira API** | Protocolo HTTP, métodos, status codes, FastAPI básico | Primeira API FastAPI | API de Filmes | ✅️ |
+| 3 | **CRUD Completo** | GET, POST, PUT, PATCH, DELETE, HTTPException | CRUD de Produtos | CRUD de Tarefas | ✅️ |
+| 4 | **MVC + Banco de Dados** | SQLAlchemy, ORM, Depends(), estrutura MVC | Produtos API + SQLite | Livros API + SQLite | ✅️ |
+| 5 | **Validação com Pydantic** | BaseModel, Field, validators, schemas de entrada/saída | Schemas avançados | Validação de Usuários | ✅️ |
+| 6 | **Autenticação JWT** | bcrypt, JWT, registro, login, proteção de rotas | Auth API Completa | Tarefas com Auth | ✅️ |
+| 7 | **Documentação Swagger** | summary, description, exemplos, tags | Docs ricos na API | Biblioteca documentada | ✅️ |
 | 8 | **Projeto Final** | Sistema completo com todos os conteúdos da UC | — | API completa | 🔒 |
  
 > **Legenda:** ✅ Concluída · ⏳ Em andamento · 🔒 Aguardando
