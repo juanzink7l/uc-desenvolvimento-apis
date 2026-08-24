@@ -121,8 +121,4 @@ uvicorn main:app --reload
 - Tem uma sugestão de melhoria? Envie um **Pull Request**
 - Dúvidas? Use a aba **Discussions**
 
----
-
-## Licença
-Este repositório contém material didático.
 
